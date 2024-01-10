@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtwkbsplrcfju"]
+
+[ext_resource type="Script" path="res://map_generator2D.gd" id="1_xxm2i"]
+[ext_resource type="Script" path="res://MeshGenerator2d.gd" id="2_kv113"]
+[ext_resource type="Script" path="res://camera2D.gd" id="3_xeaeh"]
+[ext_resource type="Script" path="res://charbod2d.gd" id="4_bmt4c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x664p"]
+
+[node name="MapGenerator" type="Node2D"]
+script = ExtResource("1_xxm2i")
+width = 160
+height = 80
+my_seed = "moha"
+randomFillPercent = 48
+
+[node name="OuterMesh" type="MeshInstance2D" parent="."]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Mesh Generator" type="Node2D" parent="."]
+script = ExtResource("2_kv113")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_xeaeh")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("4_bmt4c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(370, -146)
+shape = SubResource("RectangleShape2D_x664p")
