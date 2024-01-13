@@ -30,7 +30,7 @@ func generate_map() -> void:
 	process_map()
 	var borderSize: int = 20
 	var borderMap: Array = add_border_map(borderSize)
-	$"Mesh Generator".generate_mesh(borderMap,10)
+	$"Mesh Generator".generate_mesh(borderMap,5)
 	created = false
 
 func process_map() -> void:

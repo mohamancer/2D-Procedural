@@ -1,2 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1704910703
+::res://::1705114814
+camera2D.gd::GDScript::-1::1700690147::0::1::::<>Camera2D<>::
+cave.gdshader::Shader::-1::1705114738::0::1::::<><>::
+Cave.jpg::CompressedTexture2D::6026568949477753765::1705114807::1705114814::1::::<><>::
+charbod2d.gd::GDScript::-1::1704920652::0::1::::<>CharacterBody2D<>::
+map_generator2D.gd::GDScript::-1::1705112540::0::1::::<>Node2D<>::
+map_generator2D.tscn::PackedScene::8538876315627763994::1705114738::0::1::::<><>::res://map_generator2D.gd<>res://cave.gdshader<>res://MeshGenerator2d.gd<>uid://kyp0bd8d6yks::::res://forest_ground_04_diff_1k.jpg<>res://camera2D.gd<>res://charbod2d.gd
+MeshGenerator2d.gd::GDScript::-1::1705114571::0::1::::<>Node2D<>::
+README.md::TextFile::-1::1704920231::0::1::::<><>::

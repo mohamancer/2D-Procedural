@@ -15,30 +15,38 @@ func generate_mesh(map: Array, squareSize: float) -> void:
 	if $"../Walls".get_children().size() > 0:
 		$"../Walls".get_child(0).queue_free()
 	squareGrid = SquareGrid.new(map, squareSize)
-	
 	vertices = []
 	triangles = []
 	
 	for x in range(squareGrid.squares.size()):
 		for y in range(squareGrid.squares[0].size()):
 			triangulate_square(squareGrid.squares[x][y])
-	create_map_mesh()
+	create_map_mesh(map, squareSize)
 	
 	create_wall_mesh()
 	
-func create_map_mesh() -> void:
+func create_map_mesh(map: Array, squareSize: float) -> void:
 		# Create a new Mesh instance
 	var arr_mesh = ArrayMesh.new()
-
-	# Set the vertices and triangles of the mesh
+	var uvs = PackedVector2Array()
+	uvs.resize(vertices.size())
+	
+	for i in range(vertices.size()):
+		var percentX: float = inverse_lerp(-map.size()/2.0 * squareSize, map.size()/2.0 * squareSize, vertices[i].x)
+		var percentY: float = inverse_lerp(-map.size()/2.0 * squareSize, map.size()/2.0 * squareSize, vertices[i].z)
+		uvs[i] = Vector2(percentX, percentY) 
+		
+	# Set the vertices, uvs, and triangles of the mesh
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
+	
 	arrays[Mesh.ARRAY_VERTEX] = PackedVector2Array(Array(vertices).map(func(pos3: Vector3): return Vector2(pos3.x, pos3.z)))
 	arrays[Mesh.ARRAY_INDEX] = triangles
+	arrays[Mesh.ARRAY_TEX_UV] = uvs
+	
 	
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
 	# Update the mesh in the MeshInstance
-	$"../OuterMesh".modulate = Color.BLACK
 	$"../OuterMesh".mesh = arr_mesh
 
 

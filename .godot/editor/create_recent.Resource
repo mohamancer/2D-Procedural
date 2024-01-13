@@ -1,0 +1,5 @@
+CanvasItemMaterial
+StandardMaterial3D
+CanvasTexture
+GradientTexture2D
+Texture2DArray
