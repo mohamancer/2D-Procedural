@@ -12,5 +12,5 @@ void fragment() {
     vec2 uv = fract(UV * vec2(5.0, 5.0));
 
     // Sample the texture
-    COLOR = texture(texture_albedo, uv);
+    COLOR = texture(texture_albedo, uv) * 0.65;
 }

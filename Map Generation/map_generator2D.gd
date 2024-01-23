@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var mesh_generator = $"Mesh Generator"
+
 @export var width: int 
 @export var height: int
 
@@ -20,6 +22,7 @@ func _ready():
 	
 
 
+
 func generate_map() -> void:
 	map = []
 	random_fill_map()
@@ -30,7 +33,7 @@ func generate_map() -> void:
 	process_map()
 	var borderSize: int = 20
 	var borderMap: Array = add_border_map(borderSize)
-	$"Mesh Generator".generate_mesh(borderMap,5)
+	mesh_generator.generate_mesh(borderMap,20)
 	created = false
 
 func process_map() -> void:
@@ -286,8 +289,8 @@ func _process(_delta: float):
 
 func immediate():
 	if not created:
-		for x in range($"Mesh Generator".squareGrid.squares.size()):
-			for y in range($"Mesh Generator".squareGrid.squares[0].size()):
+		for x in range(mesh_generator.squareGrid.squares.size()):
+			for y in range(mesh_generator.squareGrid.squares[0].size()):
 				create_top_left_cube(x,y)
 				create_top_right_cube(x,y)
 				create_bottom_right_cube(x,y)
@@ -308,16 +311,16 @@ func manual():
 		create_center_bottom_cube(n,m)
 		create_center_left_cube(n,m)
 	m += 1
-	if m == $"Mesh Generator".squareGrid.squares[0].size(): 
+	if m == mesh_generator.squareGrid.squares[0].size(): 
 		m = 0
 		n += 1
-		if n == $"Mesh Generator".squareGrid.squares.size():
+		if n == mesh_generator.squareGrid.squares.size():
 			created = true
 
 func create_top_left_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
-	if $"Mesh Generator".squareGrid.squares[x][y].topLeft.active:
+	if mesh_generator.squareGrid.squares[x][y].topLeft.active:
 		newMaterial.albedo_color = Color.BLACK
 	else:
 		newMaterial.albedo_color = Color.GHOST_WHITE
@@ -328,11 +331,11 @@ func create_top_left_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.4
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].topLeft.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].topLeft.position)
 func create_top_right_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
-	if $"Mesh Generator".squareGrid.squares[x][y].topRight.active:
+	if mesh_generator.squareGrid.squares[x][y].topRight.active:
 		newMaterial.albedo_color = Color.BLACK
 	else:
 		newMaterial.albedo_color = Color.GHOST_WHITE
@@ -343,11 +346,11 @@ func create_top_right_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.4
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].topRight.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].topRight.position)
 func create_bottom_right_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
-	if $"Mesh Generator".squareGrid.squares[x][y].bottomRight.active:
+	if mesh_generator.squareGrid.squares[x][y].bottomRight.active:
 		newMaterial.albedo_color = Color.BLACK
 	else:
 		newMaterial.albedo_color = Color.GHOST_WHITE
@@ -358,11 +361,11 @@ func create_bottom_right_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.4
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].bottomRight.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].bottomRight.position)
 func create_bottom_left_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
-	if $"Mesh Generator".squareGrid.squares[x][y].bottomLeft.active:
+	if mesh_generator.squareGrid.squares[x][y].bottomLeft.active:
 		newMaterial.albedo_color = Color.BLACK
 	else:
 		newMaterial.albedo_color = Color.GHOST_WHITE
@@ -373,7 +376,7 @@ func create_bottom_left_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.4
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].bottomLeft.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].bottomLeft.position)
 func create_center_top_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
@@ -385,7 +388,7 @@ func create_center_top_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.15
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].centerTop.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].centerTop.position)
 func create_center_right_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
@@ -397,7 +400,7 @@ func create_center_right_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.15
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].centerRight.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].centerRight.position)
 func create_center_bottom_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
@@ -409,7 +412,7 @@ func create_center_bottom_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.15
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].centerBottom.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].centerBottom.position)
 func create_center_left_cube(x: int, y: int):
 	var mesh_instance = MeshInstance3D.new()
 	var newMaterial = StandardMaterial3D.new()
@@ -421,7 +424,7 @@ func create_center_left_cube(x: int, y: int):
 	cube_mesh.size = Vector3.ONE * 0.15
 	cube_mesh.material = newMaterial
 	mesh_instance.mesh = cube_mesh
-	mesh_instance.set_position($"Mesh Generator".squareGrid.squares[x][y].centerLeft.position)
+	mesh_instance.set_position(mesh_generator.squareGrid.squares[x][y].centerLeft.position)
 
 class Coord:
 	var tileX: int

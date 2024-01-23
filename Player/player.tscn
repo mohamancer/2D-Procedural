@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlgwcstylnt4v"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_ooxfr"]
+[ext_resource type="Texture2D" uid="uid://cwesojxgude3e" path="res://Player/Assets/Textures/Player3.png" id="2_7vh1o"]
+[ext_resource type="Script" path="res://Player/Controller2D.gd" id="3_hyxl7"]
+
+[sub_resource type="Animation" id="Animation_hst4h"]
+resource_name = "Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qgx7q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_qkrjt"]
+resource_name = "walk"
+length = 0.95
+loop_mode = 1
+step = 0.04
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44, 0.48, 0.52, 0.56, 0.6, 0.64, 0.68, 0.72, 0.76, 0.8, 0.84, 0.88, 0.92, 0.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_56n4i"]
+_data = {
+"Idle": SubResource("Animation_hst4h"),
+"RESET": SubResource("Animation_qgx7q"),
+"walk": SubResource("Animation_qkrjt")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sa2h"]
+size = Vector2(24, 72.6667)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, 1)
+scale = Vector2(3, 3)
+script = ExtResource("1_ooxfr")
+jumpHeight = 150.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7vh1o")
+hframes = 25
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_56n4i")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.33333, 2.66666)
+shape = SubResource("RectangleShape2D_1sa2h")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+script = ExtResource("3_hyxl7")

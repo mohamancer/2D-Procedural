@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtwkbsplrcfju"]
+
+[ext_resource type="Script" path="res://Map Generation/map_generator2D.gd" id="1_mymh6"]
+[ext_resource type="Shader" path="res://Map Generation/cave.gdshader" id="2_0021i"]
+[ext_resource type="Texture2D" uid="uid://dqmk715ee20pa" path="res://Map Generation/cave texture.jpg" id="3_mea61"]
+[ext_resource type="Script" path="res://Map Generation/MeshGenerator2d.gd" id="4_kynub"]
+[ext_resource type="PackedScene" uid="uid://dlgwcstylnt4v" path="res://Player/player.tscn" id="5_t0ym4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33xjy"]
+shader = ExtResource("2_0021i")
+shader_parameter/texture_albedo = ExtResource("3_mea61")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj3e1"]
+size = Vector2(361, 20)
+
+[node name="World" type="Node2D"]
+
+[node name="Map Generator" type="Node2D" parent="."]
+script = ExtResource("1_mymh6")
+width = 120
+height = 80
+my_seed = "moha"
+randomFillPercent = 48
+
+[node name="OuterMesh" type="MeshInstance2D" parent="Map Generator"]
+material = SubResource("ShaderMaterial_33xjy")
+
+[node name="Walls" type="StaticBody2D" parent="Map Generator"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Mesh Generator" type="Node2D" parent="Map Generator"]
+script = ExtResource("4_kynub")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("5_t0ym4")]
+position = Vector2(0, -100)
+scale = Vector2(1, 1)
+jumpHeight = 100.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-14, -45)
+shape = SubResource("RectangleShape2D_rj3e1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-69, -52)
+rotation = 1.5708
+scale = Vector2(0.16, 1)
+shape = SubResource("RectangleShape2D_rj3e1")

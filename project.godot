@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="2D Procedural"
-run/main_scene="res://map_generator2D.tscn"
+run/main_scene="res://Map Generation/map_generator2D.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Obstacles"
