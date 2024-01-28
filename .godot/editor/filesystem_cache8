@@ -1,19 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1705880602
+::res://::1706440117
 README.md::TextFile::-1::1704920231::0::1::::<><>::
-::res://Map Generation/::1705803708
+::res://Map Generation/::1706372979
 cave texture.jpg::CompressedTexture2D::8307721809808573818::1705366080::1705514715::1::::<><>::
-cave.gdshader::Shader::-1::1705803708::0::1::::<><>::
+cave.gdshader::Shader::-1::1706372979::0::1::::<><>::
+char.gd::GDScript::-1::1706051594::0::1::::<>CharacterBody2D<>::
 charbod2d.gd::GDScript::-1::1704920652::0::1::::<>CharacterBody2D<>::
 map_generator2D.gd::GDScript::-1::1705712120::0::1::::<>Node2D<>::
-map_generator2D.tscn::PackedScene::8538876315627763994::1705803687::0::1::::<><>::res://Map Generation/map_generator2D.gd<>res://Map Generation/cave.gdshader<>uid://dqmk715ee20pa::::res://Map Generation/cave texture.jpg<>res://Map Generation/MeshGenerator2d.gd<>uid://dlgwcstylnt4v::::res://Player/player.tscn
-MeshGenerator2d.gd::GDScript::-1::1705365931::0::1::::<>Node2D<>::
-::res://Player/::1705803708
-Controller2D.gd::GDScript::-1::1705803610::0::1::::Controller2D<>CollisionShape2D<>::
-Player.gd::GDScript::-1::1705801379::0::1::::<>CharacterBody2D<>::
-player.tscn::PackedScene::7945065918927960339::1705803687::0::1::::<><>::res://Player/Player.gd<>uid://cwesojxgude3e::::res://Player/Assets/Textures/Player3.png<>res://Player/Controller2D.gd
-PlayerController.gd::GDScript::-1::1705710723::0::1::::<>CharacterBody2D<>::
-Ray.gdshader::Shader::-1::1705803708::0::1::::<><>::
-::res://Player/Assets/::1705617960
-::res://Player/Assets/Textures/::1705622171
-Player3.png::CompressedTexture2D::6326371853963734180::1705617955::1705617960::1::::<><>::
+map_generator2D.tscn::PackedScene::8538876315627763994::1706372906::0::1::::<><>::res://Map Generation/map_generator2D.gd<>res://Map Generation/cave.gdshader<>uid://dqmk715ee20pa::::res://Map Generation/cave texture.jpg<>res://Map Generation/MeshGenerator2d.gd<>res://Map Generation/WorldCamra.gd<>res://Map Generation/char.gd
+MeshGenerator2d.gd::GDScript::-1::1706371418::0::1::::<>Node2D<>::
+WorldCamra.gd::GDScript::-1::1706047460::0::1::::<>Camera2D<>::

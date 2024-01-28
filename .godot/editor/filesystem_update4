@@ -1,6 +1,2 @@
 res://Map Generation/map_generator2D.tscn
 res://Map Generation/cave.gdshader
-res://Player/Ray.gdshader
-res://Player/player.tscn
-res://Player/Controller2D.gd
-res://Player/Player.gd

@@ -13,7 +13,8 @@ func generate_mesh(map: Array, squareSize: float) -> void:
 	checkedVertices.clear()
 	triangleDictionary.clear()
 	if $"../Walls".get_children().size() > 0:
-		$"../Walls".get_child(0).queue_free()
+		for child in $"../Walls".get_children():
+			child.queue_free()
 	squareGrid = SquareGrid.new(map, squareSize)
 	vertices = []
 	triangles = []
@@ -66,11 +67,16 @@ func create_wall_mesh() -> void:
 		
 		for k in range(outline.size() - 1):
 			var collisionShape = CollisionShape2D.new()
-			var shape = SegmentShape2D.new()
+			var shape = RectangleShape2D.new()
 
-			shape.a = packed[k + 1] 
-			shape.b = packed[k]
+			#shape.a = packed[k + 1] 
+			#shape.b = packed[k]
+			#collisionShape.shape = shape
+			var direction = packed[k+1] - packed[k]
+			shape.size = Vector2(packed[k+1].distance_to(packed[k]), 0)
+			collisionShape.position = packed[k+1] - direction/2
 			collisionShape.shape = shape
+			collisionShape.rotation = (packed[k+1]-packed[k]).angle()
 			$"../Walls".add_child(collisionShape)
 
 

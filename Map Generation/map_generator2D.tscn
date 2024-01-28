@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dtwkbsplrcfju"]
+[gd_scene load_steps=10 format=3 uid="uid://dtwkbsplrcfju"]
 
 [ext_resource type="Script" path="res://Map Generation/map_generator2D.gd" id="1_mymh6"]
 [ext_resource type="Shader" path="res://Map Generation/cave.gdshader" id="2_0021i"]
 [ext_resource type="Texture2D" uid="uid://dqmk715ee20pa" path="res://Map Generation/cave texture.jpg" id="3_mea61"]
 [ext_resource type="Script" path="res://Map Generation/MeshGenerator2d.gd" id="4_kynub"]
-[ext_resource type="PackedScene" uid="uid://dlgwcstylnt4v" path="res://Player/player.tscn" id="5_t0ym4"]
+[ext_resource type="Script" path="res://Map Generation/WorldCamra.gd" id="5_uxxvi"]
+[ext_resource type="Script" path="res://Map Generation/char.gd" id="7_evfvp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_33xjy"]
 shader = ExtResource("2_0021i")
@@ -12,6 +13,9 @@ shader_parameter/texture_albedo = ExtResource("3_mea61")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj3e1"]
 size = Vector2(361, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_atlh4"]
+size = Vector2(31, 45)
 
 [node name="World" type="Node2D"]
 
@@ -33,22 +37,45 @@ collision_mask = 2
 script = ExtResource("4_kynub")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Player" parent="." instance=ExtResource("5_t0ym4")]
-position = Vector2(0, -100)
-scale = Vector2(1, 1)
-jumpHeight = 100.0
+script = ExtResource("5_uxxvi")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-14, -45)
+position = Vector2(24, 6)
 shape = SubResource("RectangleShape2D_rj3e1")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-69, -52)
+position = Vector2(-72, -57)
 rotation = 1.5708
 scale = Vector2(0.16, 1)
 shape = SubResource("RectangleShape2D_rj3e1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(35, 8)
+rotation = -0.239656
+shape = SubResource("RectangleShape2D_rj3e1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(92.2475, -10.1392)
+rotation = -0.615693
+shape = SubResource("RectangleShape2D_rj3e1")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(161.7, -71.6918)
+rotation = -1.02467
+shape = SubResource("RectangleShape2D_rj3e1")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.38405
+script = ExtResource("7_evfvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-114, -59)
+shape = SubResource("RectangleShape2D_atlh4")
